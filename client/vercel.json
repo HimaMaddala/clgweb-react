@@ -2,11 +2,16 @@
   "version": 2,
   "builds": [
     {
-      "src": "*.js",
-      "use": "@vercel/node"
+      "src": "index.html",
+      "use": "@vercel/static-build"
+    },
+    {
+      "src": "dist/**/*", // Assuming your production build output directory is "dist"
+      "use": "@vercel/static"
     }
   ],
   "routes": [
+    { "handle": "filesystem" }, // Serve files not found in the static builds
     {
       "src": "/(.*)",
       "dest": "/"
